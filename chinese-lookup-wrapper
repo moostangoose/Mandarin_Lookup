@@ -1,0 +1,22 @@
+#!/bin/bash
+# Save as ~/bin/chinese-lookup-wrapper
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+
+# Get actual DBus session from running process
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    # Try to get DBus from a running process
+    for pid in $(pgrep -u $USER); do
+        if [ -r /proc/$pid/environ ]; then
+            dbus_addr=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | cut -d= -f2-)
+            if [ -n "$dbus_addr" ]; then
+                export DBUS_SESSION_BUS_ADDRESS="$dbus_addr"
+                break
+            fi
+        fi
+    done
+fi
+
+# Run the actual script
+cd PATH/TO/YOUR/PROJECT
+python3 PATH/TO/YOUR/PROJECT/clipboard_lookup.py
