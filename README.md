@@ -1,7 +1,7 @@
-dict.db in line with CC-CEDIT as of 28/01/2026
+file dict.db is in line with CC-CEDIT as of 28/01/2026
 
-place dict.db and clipboard_lookup.py in chosen (the same) location
-place chinese-lookup-wrapper.sh in ~/bin (create ~/bin if doesn't exist)
+place dict.db and clipboard_lookup.py in chosen (the same) location;
+place chinese-lookup-wrapper.sh in ~/bin (create ~/bin if doesn't exist);
 
 Ubuntu/Ubuntu-Studio wayland tested (should work on most debian based distros)
 
